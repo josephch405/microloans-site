@@ -1,9 +1,11 @@
 module.exports = {
   entry: './index.js',
 
+  // webpack.config.js
   output: {
+    path: 'public',
     filename: 'bundle.js',
-    publicPath: ''
+    publicPath: '/'
   },
 
   module: {
