@@ -62,43 +62,31 @@
 
 	var _About2 = _interopRequireDefault(_About);
 
-	var _Repos = __webpack_require__(224);
-
-	var _Repos2 = _interopRequireDefault(_Repos);
-
-	var _Repo = __webpack_require__(226);
-
-	var _Repo2 = _interopRequireDefault(_Repo);
-
-	var _Home = __webpack_require__(227);
+	var _Home = __webpack_require__(224);
 
 	var _Home2 = _interopRequireDefault(_Home);
 
-	var _Login = __webpack_require__(228);
-
-	var _Login2 = _interopRequireDefault(_Login);
-
-	var _GetStarted = __webpack_require__(229);
+	var _GetStarted = __webpack_require__(226);
 
 	var _GetStarted2 = _interopRequireDefault(_GetStarted);
 
-	var _Profile = __webpack_require__(230);
+	var _Profile = __webpack_require__(227);
 
 	var _Profile2 = _interopRequireDefault(_Profile);
 
-	var _Projects = __webpack_require__(231);
+	var _Projects = __webpack_require__(228);
 
 	var _Projects2 = _interopRequireDefault(_Projects);
 
-	var _NewProj = __webpack_require__(232);
+	var _NewProj = __webpack_require__(229);
 
 	var _NewProj2 = _interopRequireDefault(_NewProj);
 
-	var _Repayment = __webpack_require__(233);
+	var _Repayment = __webpack_require__(230);
 
 	var _Repayment2 = _interopRequireDefault(_Repayment);
 
-	var _IndividualProject = __webpack_require__(234);
+	var _IndividualProject = __webpack_require__(231);
 
 	var _IndividualProject2 = _interopRequireDefault(_IndividualProject);
 
@@ -25615,12 +25603,32 @@
 	        )
 	      ),
 	      _react2.default.createElement(
-	        'label',
-	        null,
+	        'div',
+	        { className: 'site-footer' },
 	        _react2.default.createElement(
-	          'center',
+	          'label',
 	          null,
-	          ' \xA9 2016. '
+	          '- \xA9 2016. -'
+	        ),
+	        _react2.default.createElement('br', null),
+	        _react2.default.createElement(
+	          'label',
+	          null,
+	          _react2.default.createElement(
+	            'i',
+	            null,
+	            'providing low-interest microloans for local, small businesses'
+	          )
+	        ),
+	        _react2.default.createElement('br', null),
+	        _react2.default.createElement(
+	          'label',
+	          null,
+	          _react2.default.createElement(
+	            'a',
+	            { href: './' },
+	            'Project L'
+	          )
 	        )
 	      )
 	    );
@@ -25677,6 +25685,7 @@
 	              "Project L aims to provide low-interest microloans to encourage local small business development."
 	            )
 	          ),
+	          _react2.default.createElement("hr", null),
 	          _react2.default.createElement(
 	            "p",
 	            null,
@@ -25728,26 +25737,38 @@
 	        "div",
 	        { className: "row" },
 	        _react2.default.createElement(
-	          "div",
-	          { className: "column center" },
-	          _react2.default.createElement(
-	            "div",
-	            null,
-	            _react2.default.createElement(
-	              "a",
-	              { href: ".\\", className: "button1" },
-	              " Return Home"
-	            )
-	          )
+	          "a",
+	          { href: ".\\", className: "button1" },
+	          " Return Home"
 	        )
 	      ),
 	      _react2.default.createElement(
-	        "label",
-	        null,
+	        "div",
+	        { className: "site-footer" },
 	        _react2.default.createElement(
-	          "center",
+	          "label",
 	          null,
-	          " \xA9 2016. "
+	          "- \xA9 2016. -"
+	        ),
+	        _react2.default.createElement("br", null),
+	        _react2.default.createElement(
+	          "label",
+	          null,
+	          _react2.default.createElement(
+	            "i",
+	            null,
+	            "providing low-interest microloans for local, small businesses"
+	          )
+	        ),
+	        _react2.default.createElement("br", null),
+	        _react2.default.createElement(
+	          "label",
+	          null,
+	          _react2.default.createElement(
+	            "a",
+	            { href: "./" },
+	            "Project L"
+	          )
 	        )
 	      )
 	    );
@@ -25768,46 +25789,162 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _NavLink = __webpack_require__(225);
+	var _HomeProject = __webpack_require__(225);
 
-	var _NavLink2 = _interopRequireDefault(_NavLink);
+	var _HomeProject2 = _interopRequireDefault(_HomeProject);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	exports.default = _react2.default.createClass({
-	  displayName: 'Repos',
+	  displayName: 'Home',
+	  getInitialState: function getInitialState() {
+	    return {
+	      projs: []
+	    };
+	  },
+	  componentDidMount: function componentDidMount() {
+	    console.log("getdata run");
+	    getData();
+	    globalCB = this.feedHomeProjects;
+	    setTimeout(function () {
+	      for (var i = 0; i < globalUser.projectIDs.length; i++) {
+	        getDataP(globalUser.projectIDs[i][0]);
+	      }
+	      checkHasProject();
+	    }, 1000);
+	  },
+	  feedHomeProjects: function feedHomeProjects(addThis) {
+	    console.log("feedHomeProjects run");
+	    console.log(addThis);
+	    var newA = this.state.projs;
+	    newA.push(addThis);
+	    this.setState({ projs: newA });
+	  },
 	  render: function render() {
+	    var tempDemo = [{
+	      name: "NAME1",
+	      money: 20
+	    }, {
+	      name: "NAME2",
+	      money: 34
+	    }];
 	    return _react2.default.createElement(
 	      'div',
 	      null,
 	      _react2.default.createElement(
-	        'h2',
+	        'label',
 	        null,
-	        'Repos'
+	        _react2.default.createElement('br', null)
 	      ),
 	      _react2.default.createElement(
-	        'ul',
-	        null,
+	        'div',
+	        { className: 'row' },
 	        _react2.default.createElement(
-	          'li',
-	          null,
-	          _react2.default.createElement(
-	            _NavLink2.default,
-	            { to: '/repos/reactjs/react-router' },
-	            'React Router'
-	          )
+	          'h1',
+	          { id: 'name' },
+	          'Home'
+	        )
+	      ),
+	      _react2.default.createElement(
+	        'div',
+	        { className: 'row' },
+	        _react2.default.createElement(
+	          'a',
+	          { href: './profile', className: 'button1' },
+	          'Profile'
 	        ),
 	        _react2.default.createElement(
-	          'li',
+	          'a',
+	          { href: true, className: 'button1', id: 'MyProject' },
+	          'My Project'
+	        )
+	      ),
+	      _react2.default.createElement('br', null),
+	      _react2.default.createElement(
+	        'div',
+	        { id: 'fade-box', className: 'container' },
+	        _react2.default.createElement(
+	          'label',
+	          { id: 'label1' },
+	          'Current Funds'
+	        ),
+	        _react2.default.createElement('p', { id: 'money' }),
+	        _react2.default.createElement('br', null),
+	        _react2.default.createElement(
+	          'label',
+	          { id: 'label1' },
+	          'Currently Invested In'
+	        ),
+	        _react2.default.createElement(
+	          'label',
 	          null,
+	          _react2.default.createElement('br', null)
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'scrollbox' },
+	          this.state.projs.map(function (obj, index) {
+	            return _react2.default.createElement(_HomeProject2.default, { obj: obj, key: index });
+	          })
+	        ),
+	        _react2.default.createElement('br', null)
+	      ),
+	      _react2.default.createElement('br', null),
+	      _react2.default.createElement('hr', null),
+	      _react2.default.createElement('br', null),
+	      _react2.default.createElement(
+	        'div',
+	        { id: 'narrow', className: 'container2 center' },
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'column' },
 	          _react2.default.createElement(
-	            _NavLink2.default,
-	            { to: '/repos/facebook/react' },
-	            'React'
+	            'label',
+	            null,
+	            'Other Projects'
+	          )
+	        ),
+	        _react2.default.createElement('label', null),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'column' },
+	          _react2.default.createElement('input', { type: 'text', id: 'searchbar', placeholder: 'Search other projects' }),
+	          _react2.default.createElement(
+	            'button',
+	            null,
+	            'Go'
 	          )
 	        )
 	      ),
-	      this.props.children
+	      _react2.default.createElement(
+	        'div',
+	        { className: 'site-footer' },
+	        _react2.default.createElement(
+	          'label',
+	          null,
+	          '- \xA9 2016. -'
+	        ),
+	        _react2.default.createElement('br', null),
+	        _react2.default.createElement(
+	          'label',
+	          null,
+	          _react2.default.createElement(
+	            'i',
+	            null,
+	            'providing low-interest microloans for local, small businesses'
+	          )
+	        ),
+	        _react2.default.createElement('br', null),
+	        _react2.default.createElement(
+	          'label',
+	          null,
+	          _react2.default.createElement(
+	            'a',
+	            { href: './' },
+	            'Project L'
+	          )
+	        )
+	      )
 	    );
 	  }
 	});
@@ -25816,214 +25953,35 @@
 /* 225 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	"use strict";
 
 	Object.defineProperty(exports, "__esModule", {
-	  value: true
+	     value: true
 	});
-
-	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; // modules/NavLink.js
-
 
 	var _react = __webpack_require__(1);
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _reactRouter = __webpack_require__(159);
-
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	exports.default = _react2.default.createClass({
-	  displayName: 'NavLink',
-	  render: function render() {
-	    return _react2.default.createElement(_reactRouter.Link, _extends({}, this.props, { activeClassName: 'active' }));
-	  }
+	     displayName: "HomeProject",
+	     render: function render() {
+	          console.log(this.props);
+	          return _react2.default.createElement(
+	               "div",
+	               { className: "homeProject" },
+	               this.props.obj.name,
+	               _react2.default.createElement("br", null),
+	               "$",
+	               this.props.obj.current
+	          );
+	     }
 	});
 
 /***/ },
 /* 226 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	exports.default = _react2.default.createClass({
-	  displayName: 'Repo',
-	  render: function render() {
-	    return _react2.default.createElement(
-	      'div',
-	      null,
-	      _react2.default.createElement(
-	        'h2',
-	        null,
-	        this.props.params.repoName
-	      )
-	    );
-	  }
-	});
-
-/***/ },
-/* 227 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	exports.default = _react2.default.createClass({
-	  displayName: "Home",
-	  componentDidMount: function componentDidMount() {
-	    getData();
-	  },
-	  render: function render() {
-	    return _react2.default.createElement(
-	      "div",
-	      null,
-	      _react2.default.createElement(
-	        "div",
-	        { className: "row" },
-	        _react2.default.createElement(
-	          "div",
-	          { className: "column right" },
-	          _react2.default.createElement(
-	            "h2",
-	            { id: "name" },
-	            "Home"
-	          )
-	        )
-	      ),
-	      _react2.default.createElement(
-	        "div",
-	        { className: "row" },
-	        _react2.default.createElement(
-	          "div",
-	          { className: "column center" },
-	          _react2.default.createElement(
-	            "div",
-	            { className: "button1" },
-	            "Profile"
-	          ),
-	          _react2.default.createElement(
-	            "div",
-	            { className: "button1" },
-	            "My Project"
-	          )
-	        )
-	      ),
-	      _react2.default.createElement(
-	        "div",
-	        { className: "row" },
-	        _react2.default.createElement(
-	          "div",
-	          { className: "column center" },
-	          _react2.default.createElement(
-	            "label",
-	            null,
-	            " Current Funds "
-	          ),
-	          _react2.default.createElement(
-	            "div",
-	            { className: "textbox2" },
-	            _react2.default.createElement("p", { id: "money" })
-	          )
-	        )
-	      ),
-	      _react2.default.createElement(
-	        "div",
-	        { className: "row" },
-	        _react2.default.createElement(
-	          "div",
-	          { className: "column center" },
-	          _react2.default.createElement(
-	            "label",
-	            null,
-	            _react2.default.createElement("br", null),
-	            "Currently Invested In"
-	          ),
-	          _react2.default.createElement(
-	            "div",
-	            { className: "textbox2" },
-	            _react2.default.createElement(
-	              "p",
-	              null,
-	              " Project Data Here "
-	            )
-	          )
-	        )
-	      ),
-	      _react2.default.createElement(
-	        "div",
-	        { className: "row" },
-	        _react2.default.createElement(
-	          "div",
-	          { className: "column center" },
-	          _react2.default.createElement(
-	            "label",
-	            null,
-	            "Other Projects"
-	          )
-	        ),
-	        _react2.default.createElement(
-	          "div",
-	          { className: "column center" },
-	          _react2.default.createElement("input", { type: "text", id: "searchbar", placeholder: "Search other projects" }),
-	          _react2.default.createElement(
-	            "button",
-	            null,
-	            "Go"
-	          )
-	        )
-	      )
-	    );
-	  }
-	});
-
-/***/ },
-/* 228 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	exports.default = _react2.default.createClass({
-	  displayName: "Login",
-	  render: function render() {
-	    return _react2.default.createElement(
-	      "div",
-	      null,
-	      _react2.default.createElement("script", { src: "loginScript.js" })
-	    );
-	  }
-	});
-
-/***/ },
-/* 229 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -26050,13 +26008,14 @@
 	        _react2.default.createElement("br", null)
 	      ),
 	      _react2.default.createElement(
-	        "h2",
+	        "h1",
 	        null,
 	        "Register"
 	      ),
 	      _react2.default.createElement(
 	        "div",
 	        { className: "row" },
+	        _react2.default.createElement("hr", null),
 	        _react2.default.createElement(
 	          "label",
 	          null,
@@ -26118,13 +26077,42 @@
 	            )
 	          )
 	        )
+	      ),
+	      _react2.default.createElement(
+	        "div",
+	        { className: "site-footer" },
+	        _react2.default.createElement(
+	          "label",
+	          null,
+	          "- \xA9 2016. -"
+	        ),
+	        _react2.default.createElement("br", null),
+	        _react2.default.createElement(
+	          "label",
+	          null,
+	          _react2.default.createElement(
+	            "i",
+	            null,
+	            "providing low-interest microloans for local, small businesses"
+	          )
+	        ),
+	        _react2.default.createElement("br", null),
+	        _react2.default.createElement(
+	          "label",
+	          null,
+	          _react2.default.createElement(
+	            "a",
+	            { href: "./" },
+	            "Project L"
+	          )
+	        )
 	      )
 	    );
 	  }
 	}); // JavaScript File
 
 /***/ },
-/* 230 */
+/* 227 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -26146,6 +26134,15 @@
 	      "div",
 	      null,
 	      _react2.default.createElement(
+	        "div",
+	        { className: "container right" },
+	        _react2.default.createElement(
+	          "a",
+	          { href: "./home", className: "button1" },
+	          "Home"
+	        )
+	      ),
+	      _react2.default.createElement(
 	        "label",
 	        null,
 	        _react2.default.createElement("br", null)
@@ -26156,26 +26153,59 @@
 	        "Profile Page"
 	      ),
 	      _react2.default.createElement(
-	        "p",
-	        { id: "name" },
-	        "Name"
+	        "div",
+	        { className: "container2" },
+	        _react2.default.createElement(
+	          "p",
+	          { id: "name" },
+	          "Name"
+	        ),
+	        _react2.default.createElement(
+	          "p",
+	          null,
+	          "Username"
+	        ),
+	        _react2.default.createElement(
+	          "p",
+	          null,
+	          "Change Password or smth"
+	        )
 	      ),
 	      _react2.default.createElement(
-	        "p",
-	        null,
-	        "Username"
-	      ),
-	      _react2.default.createElement(
-	        "p",
-	        null,
-	        "Change Password or smth"
+	        "div",
+	        { className: "site-footer" },
+	        _react2.default.createElement(
+	          "label",
+	          null,
+	          "- \xA9 2016. -"
+	        ),
+	        _react2.default.createElement("br", null),
+	        _react2.default.createElement(
+	          "label",
+	          null,
+	          _react2.default.createElement(
+	            "i",
+	            null,
+	            "providing low-interest microloans for local, small businesses"
+	          )
+	        ),
+	        _react2.default.createElement("br", null),
+	        _react2.default.createElement(
+	          "label",
+	          null,
+	          _react2.default.createElement(
+	            "a",
+	            { href: "./" },
+	            "L Project"
+	          )
+	        )
 	      )
 	    );
 	  }
 	}); // JavaScript File
 
 /***/ },
-/* 231 */
+/* 228 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -26259,13 +26289,42 @@
 	            " Project Data Here "
 	          )
 	        )
+	      ),
+	      _react2.default.createElement(
+	        "div",
+	        { className: "site-footer" },
+	        _react2.default.createElement(
+	          "label",
+	          null,
+	          "- \xA9 2016. -"
+	        ),
+	        _react2.default.createElement("br", null),
+	        _react2.default.createElement(
+	          "label",
+	          null,
+	          _react2.default.createElement(
+	            "i",
+	            null,
+	            "providing low-interest microloans for local, small businesses"
+	          )
+	        ),
+	        _react2.default.createElement("br", null),
+	        _react2.default.createElement(
+	          "label",
+	          null,
+	          _react2.default.createElement(
+	            "a",
+	            { href: "./" },
+	            "Project L"
+	          )
+	        )
 	      )
 	    );
 	  }
 	}); // Javascript File
 
 /***/ },
-/* 232 */
+/* 229 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -26282,6 +26341,9 @@
 
 	exports.default = _react2.default.createClass({
 	  displayName: "NewProj",
+	  componentDidMount: function componentDidMount() {
+	    getData();
+	  },
 	  render: function render() {
 	    return _react2.default.createElement(
 	      "div",
@@ -26296,7 +26358,7 @@
 	        )
 	      ),
 	      _react2.default.createElement(
-	        "h2",
+	        "h1",
 	        null,
 	        "New Project"
 	      ),
@@ -26317,13 +26379,42 @@
 	            } },
 	          "Create Project"
 	        )
+	      ),
+	      _react2.default.createElement(
+	        "div",
+	        { className: "site-footer" },
+	        _react2.default.createElement(
+	          "label",
+	          null,
+	          "- \xA9 2016. -"
+	        ),
+	        _react2.default.createElement("br", null),
+	        _react2.default.createElement(
+	          "label",
+	          null,
+	          _react2.default.createElement(
+	            "i",
+	            null,
+	            "providing low-interest microloans for local, small businesses"
+	          )
+	        ),
+	        _react2.default.createElement("br", null),
+	        _react2.default.createElement(
+	          "label",
+	          null,
+	          _react2.default.createElement(
+	            "a",
+	            { href: "./" },
+	            "Project L"
+	          )
+	        )
 	      )
 	    );
 	  }
 	}); // JavaScript File
 
 /***/ },
-/* 233 */
+/* 230 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -26340,31 +26431,139 @@
 
 	exports.default = _react2.default.createClass({
 	  displayName: "Repayment",
+	  getInitialState: function getInitialState() {
+	    return { name: "", objective: "", goal: "", isPaybackTime: "", interestDate: "", current: "" };
+	  },
+	  componentDidMount: function componentDidMount() {
+	    console.log("getdata run");
+	    getData();
+	    globalCB = this.feedIndieProject;
+	    setTimeout(function () {
+	      getDataP(globalUser.ownProject);
+	    }, 1000);
+	  },
+	  feedIndieProject: function feedIndieProject(addThis) {
+	    console.log("feedIndieProject run");
+	    console.log(addThis);
+	    var newA = this.state;
+	    for (var i in newA) {
+	      newA[i] = addThis[i];
+	    }
+	    this.setState(newA);
+	  },
 	  render: function render() {
 	    return _react2.default.createElement(
 	      "div",
 	      null,
+	      _react2.default.createElement(
+	        "div",
+	        { className: "container right" },
+	        _react2.default.createElement(
+	          "a",
+	          { href: "./home", className: "button1" },
+	          "Home"
+	        )
+	      ),
+	      _react2.default.createElement(
+	        "label",
+	        null,
+	        _react2.default.createElement("br", null)
+	      ),
 	      _react2.default.createElement(
 	        "h1",
 	        null,
 	        "Repayment"
 	      ),
 	      _react2.default.createElement(
-	        "label",
-	        null,
+	        "div",
+	        { id: "fade-box", className: "container" },
 	        _react2.default.createElement(
-	          "center",
+	          "h2",
 	          null,
-	          " \xA9 2016. "
+	          this.state.name
+	        ),
+	        _react2.default.createElement(
+	          "p",
+	          null,
+	          this.state.objective
+	        ),
+	        _react2.default.createElement(
+	          "h3",
+	          null,
+	          "Total Loan Amount"
+	        ),
+	        this.state.goal,
+	        _react2.default.createElement(
+	          "h3",
+	          null,
+	          "Cash in Pile"
+	        ),
+	        this.state.current,
+	        _react2.default.createElement(
+	          "label",
+	          null,
+	          _react2.default.createElement("br", null)
+	        ),
+	        _react2.default.createElement(
+	          "button",
+	          { className: "button3" },
+	          "Your Plan"
+	        ),
+	        _react2.default.createElement(
+	          "button",
+	          { className: "button3" },
+	          "Your Borrowers"
+	        ),
+	        _react2.default.createElement(
+	          "button",
+	          { className: "button3" },
+	          "Completed Projects"
+	        )
+	      ),
+	      _react2.default.createElement("br", null),
+	      _react2.default.createElement(
+	        "div",
+	        { id: "fade-box", className: "container" },
+	        _react2.default.createElement("br", null),
+	        this.state.isPaybackTime ? "Repaying loans" : "Gaining support",
+	        _react2.default.createElement(
+	          "div",
+	          { id: "progress-cont", className: "container" },
+	          _react2.default.createElement("div", { id: "progress", style: { width: parseInt(this.state.current) * 100 / parseInt(this.state.goal) + "%" }, className: "progress-bar" })
+	        ),
+	        _react2.default.createElement(
+	          "button",
+	          { type: "button1" },
+	          "Update"
 	        )
 	      ),
 	      _react2.default.createElement(
 	        "div",
-	        { className: "container3 center" },
+	        { className: "site-footer" },
 	        _react2.default.createElement(
-	          "a",
-	          { href: "./Home", className: "button1" },
-	          "Return Home"
+	          "label",
+	          null,
+	          "- \xA9 2016. -"
+	        ),
+	        _react2.default.createElement("br", null),
+	        _react2.default.createElement(
+	          "label",
+	          null,
+	          _react2.default.createElement(
+	            "i",
+	            null,
+	            "providing low-interest microloans for local, small businesses"
+	          )
+	        ),
+	        _react2.default.createElement("br", null),
+	        _react2.default.createElement(
+	          "label",
+	          null,
+	          _react2.default.createElement(
+	            "a",
+	            { href: "./" },
+	            "Project L"
+	          )
 	        )
 	      )
 	    );
@@ -26372,7 +26571,7 @@
 	});
 
 /***/ },
-/* 234 */
+/* 231 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -26389,6 +26588,23 @@
 
 	exports.default = _react2.default.createClass({
 	     displayName: "IndividualProject",
+	     getInitialState: function getInitialState() {
+	          return { name: "", user: "", interestDate: "", current: 0, goal: 0 };
+	     },
+	     componentDidMount: function componentDidMount() {
+	          console.log("getdata run");
+	          globalCB = this.eatThis;
+	          getDataP(window.location.search.split("=")[1]);
+	     },
+	     eatThis: function eatThis(obj) {
+	          var t = this.state;
+	          t.name = obj.name;
+	          t.interestDate = obj.interestDate;
+	          t.objective = obj.objective;
+	          t.current = parseInt(obj.current);
+	          t.goal = parseInt(obj.goal);
+	          this.setState(t);
+	     },
 	     render: function render() {
 	          return _react2.default.createElement(
 	               "div",
@@ -26402,29 +26618,96 @@
 	                         _react2.default.createElement(
 	                              "h1",
 	                              null,
-	                              " Project Name "
+	                              " ",
+	                              this.state.name,
+	                              " "
 	                         )
 	                    )
 	               ),
 	               _react2.default.createElement(
 	                    "div",
 	                    { className: "row" },
+	                    _react2.default.createElement("img", { src: "http://www.zacuto.com/wp-content/uploads/2013/10/stock-footage-guide1.jpg" })
+	               ),
+	               _react2.default.createElement(
+	                    "label",
+	                    null,
+	                    _react2.default.createElement("br", null)
+	               ),
+	               _react2.default.createElement(
+	                    "div",
+	                    { id: "fade-box", className: "container" },
+	                    _react2.default.createElement("input", { id: "qnt", type: "text", placeholder: "Enter Quantity", required: true }),
+	                    _react2.default.createElement(
+	                         "button",
+	                         { type: "button", onClick: function onClick() {
+	                                   joinProject(window.location.search.split("=")[1], document.getElementById("qnt").value);
+	                              }, className: "button2" },
+	                         "Support this Project "
+	                    ),
+	                    _react2.default.createElement(
+	                         "label",
+	                         null,
+	                         "Objective: ",
+	                         this.state.objective
+	                    ),
 	                    _react2.default.createElement(
 	                         "div",
-	                         { className: "column center" },
+	                         { className: "row" },
 	                         _react2.default.createElement(
 	                              "div",
-	                              { className: "textbox3" },
+	                              { className: "column center" },
 	                              _react2.default.createElement(
-	                                   "p",
-	                                   null,
-	                                   " Created by: [User] "
-	                              ),
-	                              _react2.default.createElement(
-	                                   "p",
-	                                   null,
-	                                   " Created on: [Date] "
+	                                   "div",
+	                                   { className: "textbox3" },
+	                                   _react2.default.createElement(
+	                                        "p",
+	                                        null,
+	                                        " Progress: ",
+	                                        this.state.current,
+	                                        " out of ",
+	                                        this.state.goal,
+	                                        " (",
+	                                        100 * this.state.current / this.state.goal,
+	                                        "%)"
+	                                   ),
+	                                   _react2.default.createElement(
+	                                        "p",
+	                                        null,
+	                                        " Created on: ",
+	                                        this.state.interestDate,
+	                                        " "
+	                                   )
 	                              )
+	                         )
+	                    )
+	               ),
+	               _react2.default.createElement(
+	                    "div",
+	                    { className: "site-footer" },
+	                    _react2.default.createElement(
+	                         "label",
+	                         null,
+	                         "- \xA9 2016. -"
+	                    ),
+	                    _react2.default.createElement("br", null),
+	                    _react2.default.createElement(
+	                         "label",
+	                         null,
+	                         _react2.default.createElement(
+	                              "i",
+	                              null,
+	                              "providing low-interest microloans for local, small businesses"
+	                         )
+	                    ),
+	                    _react2.default.createElement("br", null),
+	                    _react2.default.createElement(
+	                         "label",
+	                         null,
+	                         _react2.default.createElement(
+	                              "a",
+	                              { href: "./" },
+	                              "Project L"
 	                         )
 	                    )
 	               )

@@ -6,13 +6,13 @@ export default React.createClass({
     return( 
     <div>
     <label><br/></label>
-    <h2>Register</h2>
+    <h1>Register</h1>
     <div className="row">
+    <hr/>
      <label><i>Sign up and support what you love.</i></label>
     </div>
      <label><br/></label>
 
-    
     <form action="action_page.php">
     <div className="container2">
 
@@ -44,6 +44,14 @@ export default React.createClass({
    
     </div>
     </form>
+    
+    <div className="site-footer">
+        <label>- © 2016. -</label>
+       <br/>
+       <label><i>providing low-interest microloans for local, small businesses</i></label>
+       <br/>
+       <label><a href="./">Project L</a></label>
+    </div>
     
     </div>
     )

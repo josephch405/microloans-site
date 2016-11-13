@@ -8,6 +8,14 @@ tryCreate = function(name, objective, goal){
     xhr.addEventListener("readystatechange", function() {
         if (this.readyState === 4) {
             console.log(this.responseText);
+            if(this.responseText == "Project created"){
+                window.location.replace('./home');
+
+            }
+            
+            else{
+                alert("Project name taken")
+            }
         }
     });
     
@@ -65,8 +73,9 @@ var globalUser = {
     
 }
 
+var globalCB;
 
-getData = function(){
+getData = function(cb){
     var bob;
     var xhr = new XMLHttpRequest();
     var data = null;
@@ -78,8 +87,10 @@ getData = function(){
             globalUser = JSON.parse(this.responseText);
             
             //document.getElementById("username").innerHTML = globalUser.username;
-            document.getElementById("money").innerHTML = "$" + globalUser.money ;
-            document.getElementById("name").innerHTML = globalUser.name;
+            if(document.getElementById("money")){
+            document.getElementById("money").innerHTML = "$" + globalUser.money ;}
+            if (document.getElementById("name")){
+            document.getElementById("name").innerHTML = "Welcome, " + globalUser.name;}
             //document.getElementById("email").innerHTML = globalUser.email;
             console.log(JSON.parse(this.responseText));
         }
@@ -93,38 +104,36 @@ getData = function(){
 }
 
 
-var globalProject = {
-    name: "",
-    objective: "",
-    goal: 0,
-    current: 0,
-    
-}
+var globalProjects = [];
 
-
-getDataP = function(){
+//only for one proj
+getDataP = function(projId){
     var xhr = new XMLHttpRequest();
-    var data = null;
 
     xhr.withCredentials = true;
+    
+    console.log("getdatap try");
 
     xhr.addEventListener("readystatechange", function() {
         if (this.readyState === 4) {
-            globalProject = JSON.parse(this.responseText);
+            console.log("globalCB try");
+            if(globalCB){
+            console.log("globalCB done");
+            console.log(this.responseText);
             
-            document.getElementById("name").innerHTML = globalProject.name;
-            document.getElementById("objective"),innerHTML = globalProject.objective;
-            document.getElementById("goal").innerHTML = globalProject.goal;
-            document.getElementById("current").innerHTML = globalProject.current;
-            console.log(JSON.parse(this.responseText));
+            globalCB(JSON.parse(this.responseText))};
+            
+            globalProjects.push(JSON.parse(this.responseText));
         }
         });
-    xhr.open("POST", "http://microloans-project-josephch405.c9users.io:8081/api/project/data");
+        
+        console.log("ID RIGHT BEHIND");
+        console.log(projId);
+    xhr.open("POST", "http://microloans-project-josephch405.c9users.io:8081/api/project/data?projID="+projId);
     xhr.setRequestHeader("cache-control", "no-cache");
     xhr.setRequestHeader("postman-token", "11042d82-ab27-7197-5cb0-3c9c69e59b7b");
 
-
-    xhr.send(data);
+    xhr.send();
 }
 
 
@@ -138,7 +147,7 @@ tryRegister = function(name, user, pass, email, creditcard) {
         if (this.readyState === 4) {
             console.log(this.responseText);
              if (this.responseText == "user created"){
-                window.location.replace('./home');
+                window.location.replace('./');
             }
             else{
               alert("Invalid registration information");
@@ -152,6 +161,46 @@ tryRegister = function(name, user, pass, email, creditcard) {
         "&email=" + email + "&creditcard=" + creditcard);
     xhr.setRequestHeader("cache-control", "no-cache");
     xhr.setRequestHeader("postman-token", "454edc21-3109-8425-99bf-c3b1aff70d1d");
+
+    xhr.send(data);
+}
+
+checkHasProject = function(){
+    if (globalUser.ownProject == ""){
+        var a = document.getElementById("MyProject");
+        a.href = "./new-project";
+    }
+    
+    else{
+        var a = document.getElementById("MyProject");
+        a.href = "./Repayment";
+    }
+}
+
+joinProject = function(pid, quant){
+    var xhr = new XMLHttpRequest();
+    var data = null;
+
+    xhr.withCredentials = true;
+
+    xhr.addEventListener("readystatechange", function() {
+        if (this.readyState === 4) {
+            console.log(this.responseText);
+             if (this.responseText == "ok"){
+                 alert("You are now a supporter!")
+                window.location.replace('./home');
+            }
+            else{
+              alert("Something went wrong");
+            }
+        }
+    });
+    
+    var createPOST = "http://microloans-project-josephch405.c9users.io:8081/api/project/join";
+
+    xhr.open("POST", createPOST + "?pid=" + pid + "&quant=" + quant);
+    xhr.setRequestHeader("cache-control", "no-cache");
+    xhr.setRequestHeader("postman-token", "5b312c12-57f3-2035-c2e4-cc92641b3bc5");
 
     xhr.send(data);
 }

@@ -31,6 +31,14 @@ export default React.createClass({
        <p> Project Data Here </p>
        </div>
       </div>
+      
+     <div className="site-footer">
+         <label>- © 2016. -</label>
+         <br/>
+         <label><i>providing low-interest microloans for local, small businesses</i></label>
+         <br/>
+         <label><a href="./">Project L</a></label>
+     </div>
     </div>
     )
   }

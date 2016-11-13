@@ -12,7 +12,7 @@ app.use(compression())
 app.use(session({
   secret: 'such secret',
   cookie: {
-    maxAge: 60000
+    maxAge: 600000000
   }
 }))
 
@@ -20,6 +20,25 @@ app.use(express.static(path.join(__dirname, 'public')))
 
 app.get('*', function(req, res) {
   res.sendFile(path.join(__dirname, 'public', 'index.html'))
+})
+
+var objid = "";
+
+app.post('/api/project/join', function(req, res){
+  var pCol = _db.collection('projects');
+  var uCol = _db.collection('users');
+  
+  var uid = req.session.user;
+  var pid = req.query.pid;
+  var q = req.query.quant;
+  
+  uCol.update({_id: mongodb.ObjectId(uid)}, {$push:{projectIDs:[pid, parseInt(q)]}, $inc:{money:-parseInt(q)}}, function(){
+    pCol.update({_id: mongodb.ObjectId(pid)}, {$inc: {current:parseInt(q)}}, function(){
+      res.send("ok")
+      
+    });
+  });
+  
 })
 
 app.post('/api/project/create', function(req, res){
@@ -31,24 +50,32 @@ app.post('/api/project/create', function(req, res){
       res.send("project already exists")
     }
     else{
+      objid = mongodb.ObjectId().toHexString();
+      console.log("read this first")
+      console.log(objid);
       col.insert({
+        _id: mongodb.ObjectId(objid),
         name: req.query.name,
-        userID: req.query.userID,
+        userID: req.session.user,
         objective: req.query.objective,
         goal: req.query.goal,
         current: 0,
         isPaybackTime: false,
-        interestDate: new Date().toISOString()
-        
+        interestDate: new Date().toISOString(),
       },
       function(err, result){
         if (err){
           res.send("Error")
         }
         else{
+          console.log("READ THIS");
+          console.log(objid);
+          _db.collection('users').update({_id:mongodb.ObjectId(req.session.user)}, {$set:{ownProject:objid}})
           res.send("Project created")
+          
         }
-      })
+      });
+      
     }
   })
 })
@@ -113,6 +140,22 @@ app.post('/api/user/data', function(req, res) {
   }).toArray(function(err, result){
     console.log(result);
     res.send(result[0]);
+  });
+});
+
+app.post('/api/project/data', function(req, res) {
+  var col = _db.collection('projects');
+  var id = req.query.projID;
+  console.log(id);
+  col.find({
+    _id:mongodb.ObjectId(id)
+  }).toArray(function(err, result){
+    console.log(result[0]);
+    if(parseInt(result[0].goal) > parseInt(result[0].current) && !result[0].isPaybackTime){
+      col.update({_id:mongodb.ObjectId(id)}, {$set:{isPaybackTime: true}})
+    }
+    res.send(result[0]);
+    
   });
 });
 

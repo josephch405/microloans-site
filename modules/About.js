@@ -14,6 +14,7 @@ export default React.createClass({
         <div>
           <div className="textbox">
             <p><i>Project L aims to provide low-interest microloans to encourage local small business development.</i></p>
+            <hr/>
             <p>Project L is a platform to crowdfund local small businesses. We connect borrowers seeking to expand their 
             small business with investors who want to give back to their community. Community building is an important value 
             of Project L and borrowers and investors are geo-fenced to their city, to facilitate neighborhood development. </p>
@@ -40,14 +41,17 @@ export default React.createClass({
         </div>
         <br/>  
         <div className="row">
-          <div className="column center">
-            <div>
             <a href=".\" className = "button1"> Return Home</a>
-            </div>
-          </div>
         </div>
-        <label><center> © 2016. </center></label>
-       </div>
+        
+       <div className="site-footer">
+        <label>- © 2016. -</label>
+       <br/>
+       <label><i>providing low-interest microloans for local, small businesses</i></label>
+       <br/>
+       <label><a href="./">Project L</a></label>
+      </div>
+     </div>
     )
   }
 })

@@ -1,5 +1,6 @@
 body{
   background: #f2f2f2;
+  height: 100%;
   font-family: verdana;
   margin:0;
   padding:0;
@@ -16,9 +17,15 @@ h1 {
 h2 {
   color: black;
   font-family: verdana;
-  font-size: 180%;
+  font-size: 150%;
   text-align: center;}
 
+h3 {
+  color: #808080;
+  font-family: verdana;
+  font-size: 100%;
+  text-align: center;
+}
 p {
   color: black;
   font-family: verdana;
@@ -28,12 +35,20 @@ p {
   text-align: center;
 }
 
+a {
+  color:  #ff8c00;
+}
+
+a: visited{
+  color:  #bfbfbf;
+}
+
 hr { 
   width: 50%;
-  opacity: 0.5;
+  opacity: 0.3;
   border: 0; 
   height: 1px; 
-  background-color: #8c8c8c;
+  background-color: #4d4d4d;
 }
 
 label{
@@ -44,22 +59,59 @@ label{
   padding: 10px;
 }
 
+#label1 {
+  margin: 10px;
+  padding: 10px;
+  font-size: 90%;
+  display: inline-block;
+}
+
 .active {
   color: green;
 }
 
 .container {
   background-color:  rgba(255, 255, 255, 1);
-  width:100%;
+  width: 100%;
   font-family: verdana;
+  text-align: center;
   padding: 0px;
   box-shadow: 0 0 2px 0 #000000;
-  
+  display: block;
+  margin: 0 auto;
 }
 
+#narrow {
+  width: 60%;
+  padding: 2px;
+}
+
+#progress-cont{
+  position: relative;
+  width: 70%;
+  height: 15px;
+  border-radius: 10px;
+}
+
+#fade-box {
+  width: 75%;
+  padding: 10px;
+  border-radius: 0;
+  box-shadow: 0 0 0 0 #000000;
+  background-color: rgba(200,200,200,0.3);
+}
+
+#orange-bg {
+  width: 15%;
+  border-radius: 10px;
+  padding: 10px;
+  display: block;
+  margin: 0 auto;
+}
 .container2 {
   background-color:  #bfbfbf;
   width: 50%;
+  height: auto;
   border-radius: 10px;
   font-family: verdana;
   padding: 10px;
@@ -81,6 +133,7 @@ label{
   box-shadow:0 0 2px 0 black;
   width: 70%;
   font-family: verdana;
+  font-size: 90%;
   padding: 15px;
   margin: 15px;
   border-radius: 10px;
@@ -90,8 +143,9 @@ label{
 
 .textbox2{
   background-color: #bfbfbf;
-  width:95%;
+  width:50%;
   font-family: verdana;
+  font-size: 70%;
   padding: 15px;
   margin: 15px;
   border-radius: 10px;
@@ -110,7 +164,8 @@ label{
 
 .textbox4{
   background-color: #ff8c00;
-  width:20%;
+  width:auto;
+  color: white;
   font-family:verdana;
   padding: 10px;
   margin: 15px;
@@ -118,15 +173,41 @@ label{
   border-radius: 10px;
 }
 
+.scrollbox{
+  width: 85%;
+  height: 200px;
+  box-shadow:0 0 2px 0 black;
+  background-color: #fff;
+  padding: 15px;
+  border-radius: 10px;
+  display: block;
+  margin: 0 auto;
+}
+
+#list-el {
+  font-size: 80%;
+  color: #808080;
+  padding: 25px;
+  height:200px;
+}
+
+.homeProject{
+  width: 180px;
+  height: 180px;
+  background-color: #009922;
+  display: inline-block;
+  margin: 10px;
+}
+
 .row {
-  display: table;
+  display: block;
   width: 100%;
   border-spacing: 10px;
   text-align: center;
 }
 
 .column {
-  display: table-cell;
+  display: inline;
 }
 
 button{
@@ -140,22 +221,24 @@ button{
     cursor: pointer;
     border-radius: 8px;
     width: auto;
+    transition-duration: 0.7s;
 }
 
 .button1{
-    background-color: #FFFFFF;
-    display:inline-block;
-    text-decoration: none;
-    font-size: 70%;
-    opacity:1;
-    color: black;
-    padding: 10px 15px;
-    margin: 8px 8px;
-    border: none;
-    cursor: pointer;
-    border-radius: 8px;
-    width: auto;
-    box-shadow:0 0 2px 0 black;
+  background-color: #FFFFFF;
+  display:inline-block;
+  text-decoration: none;
+  font-size: 70%;
+  opacity:1;
+  color: black;
+  padding: 10px 15px;
+  margin: 8px 8px;
+  border: none;
+  cursor: pointer;
+  border-radius: 8px;
+  width: auto;
+  box-shadow:0 0 2px 0 black;
+  transition-duration: 0.7s;
 }
 
 .button2{
@@ -168,7 +251,9 @@ button{
   border: none;
   cursor: pointer;
   border-radius: 8px;
+  box-shadow:0 0 2px 0 black;
   width: auto;
+  transition-duration: 0.7s;
 }
 
 .button3{
@@ -180,20 +265,47 @@ button{
   border: none;
   border-radius: 8px;
   width: auto;
-  height: 50px
+  box-shadow:0 0 2px 0 black;
+  height: 50px;
+  transition-duration: 0.7s;
 }
 
 .button4{
-    background-color: #f44336;
-    text-decoration: none;
-    font-size: 70%;
-    color: white;
-    padding: 10px 15px;
-    margin: 8px 8px;
-    border: none;
-    cursor: pointer;
-    border-radius: 8px;
-    width: auto;
+  background-color: #f44336;
+  text-decoration: none;
+  font-size: 70%;
+  color: white;
+  padding: 10px 15px;
+  margin: 8px 8px;
+  border: none;
+  cursor: pointer;
+  border-radius: 8px;
+  box-shadow:0 0 2px 0 black;
+  width: auto;
+  transition-duration: 0.7s;
+}
+
+button:hover {
+  background-color: #4d4d4d;
+}
+
+.button1:hover {
+  background-color: #ff8c00;
+}
+
+.button2:hover {
+  background-color: #4d4d4d;
+  color: white;
+}
+
+.button3:hover {
+  background-color: #4d4d4d;
+  color: white;
+}
+
+.button4:hover {
+  background-color: #ff8c00;
+  color: white;
 }
 
 .linkbutton{
@@ -327,6 +439,12 @@ input[type=password], select {
     width: auto;
     padding: 10px 18px;
     background-color: #f44336;
+    transition-duration: 0.7s;
+}
+
+.cancelbtn:hover {
+  background-color: #ff8c00;
+  color: white;
 }
 
 .animate {
@@ -373,4 +491,31 @@ input[type=password], select {
 #abt{
   font-family: 'Droid Sans', sans-serif;
   font-size:20px;
+}
+
+.site-footer {
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 1rem;
+  margin-top: 150px;
+  height:50px;
+  background-color: #ffffff;
+  text-align: center;
+  text-decoration: none;
+  color: #bfbfbf;
+  box-shadow: 0 0 2px 0 #000000;
+}
+
+.progress-bar {
+  background-color: #ff8c00;
+  border-radius: 10px;
+  height: 85%;
+  position: absolute;
+  line-height:inherit;
+}
+
+#money{
+  font-size:10vh;
+  font-family:Verdana;
 }

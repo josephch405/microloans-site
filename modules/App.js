@@ -48,7 +48,15 @@ export default React.createClass({
         <a href="/about" className = "button1">Learn More</a>
         </center>
         </div>
-        <label><center> © 2016. </center></label>
+        
+         <div className="site-footer">
+         <label>- © 2016. -</label>
+         <br/>
+         <label><i>providing low-interest microloans for local, small businesses</i></label>
+         <br/>
+         <label><a href="./">Project L</a></label>
+        </div>
+       
       </div>
     )
   }
